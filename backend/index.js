@@ -158,6 +158,7 @@ app.get('/userData', authenticateJWT, authorize('user'), async (req, res) => {
 
         res.json({
             name: user.name,
+            aadharNumber: user.aadharNumber,
             emergencyContact: user.emergencyContact,
             bloodGroup: user.bloodGroup,
             allergies: user.allergies,
