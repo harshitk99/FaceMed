@@ -31,14 +31,14 @@ const SignupProfessional = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-      <form className="bg-white p-8 rounded shadow-md w-96" onSubmit={handleSubmit}>
-        <h2 className="text-2xl mb-4 text-center">Signup as Professional</h2>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-teal-100 to-teal-200">
+      <form className="bg-white p-8 rounded-lg shadow-lg w-80 max-w-md" onSubmit={handleSubmit}>
+        <h2 className="text-2xl mb-6 text-center text-teal-800 font-bold">Signup as Professional</h2>
         <input
           type="text"
           name="name"
           placeholder="Name"
-          className="mb-4 w-full p-2 border border-gray-300 rounded"
+          className="mb-4 w-full p-3 border border-teal-300 rounded-lg text-teal-700"
           onChange={handleChange}
           required
         />
@@ -46,7 +46,7 @@ const SignupProfessional = () => {
           type="text"
           name="doctorId"
           placeholder="Doctor ID"
-          className="mb-4 w-full p-2 border border-gray-300 rounded"
+          className="mb-4 w-full p-3 border border-teal-300 rounded-lg text-teal-700"
           onChange={handleChange}
           required
         />
@@ -54,7 +54,7 @@ const SignupProfessional = () => {
           type="password"
           name="password"
           placeholder="Password"
-          className="mb-4 w-full p-2 border border-gray-300 rounded"
+          className="mb-4 w-full p-3 border border-teal-300 rounded-lg text-teal-700"
           onChange={handleChange}
           required
         />
@@ -62,7 +62,7 @@ const SignupProfessional = () => {
           type="text"
           name="contact"
           placeholder="Contact"
-          className="mb-4 w-full p-2 border border-gray-300 rounded"
+          className="mb-4 w-full p-3 border border-teal-300 rounded-lg text-teal-700"
           onChange={handleChange}
           required
         />
@@ -70,13 +70,13 @@ const SignupProfessional = () => {
           type="text"
           name="affiliatedHospital"
           placeholder="Affiliated Hospital"
-          className="mb-4 w-full p-2 border border-gray-300 rounded"
+          className="mb-4 w-full p-3 border border-teal-300 rounded-lg text-teal-700"
           onChange={handleChange}
           required
         />
         <button
           type="submit"
-          className="bg-blue-500 text-white w-full py-2 rounded hover:bg-blue-600"
+          className="bg-teal-600 text-white w-full py-2 rounded-lg hover:bg-teal-700 transition duration-300"
         >
           Signup
         </button>

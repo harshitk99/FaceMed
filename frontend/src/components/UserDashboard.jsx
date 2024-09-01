@@ -56,12 +56,12 @@ const UserDashboard = () => {
     navigate('/');
   };
 
-  if (!userData) return <div>Loading...</div>;
+  if (!userData) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md w-96">
-        <h2 className="text-2xl mb-4 text-center">User Dashboard</h2>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-teal-100 to-teal-200">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-80 max-w-md">
+        <h2 className="text-2xl mb-6 text-center text-teal-800 font-bold">User Dashboard</h2>
         {!isEditing ? (
           <div>
             <p><strong>Name:</strong> {userData.name}</p>
@@ -72,7 +72,7 @@ const UserDashboard = () => {
             <p><strong>Past Surgery:</strong> {userData.pastSurgery}</p>
             <p><strong>Other Medical Conditions:</strong> {userData.otherMedicalConditions}</p>
             <button
-              className="bg-blue-500 text-white w-full py-2 mt-4 rounded hover:bg-blue-600"
+              className="bg-teal-600 text-white w-full py-2 mt-4 rounded-lg hover:bg-teal-700 transition duration-300"
               onClick={() => setIsEditing(true)}
             >
               Edit Information
@@ -84,7 +84,7 @@ const UserDashboard = () => {
               type="text"
               name="name"
               placeholder="Name"
-              className="mb-4 w-full p-2 border border-gray-300 rounded"
+              className="mb-4 w-full p-3 border border-teal-300 rounded-lg text-teal-700"
               value={formData.name}
               onChange={handleChange}
               required
@@ -93,7 +93,7 @@ const UserDashboard = () => {
               type="text"
               name="emergencyContact"
               placeholder="Emergency Contact"
-              className="mb-4 w-full p-2 border border-gray-300 rounded"
+              className="mb-4 w-full p-3 border border-teal-300 rounded-lg text-teal-700"
               value={formData.emergencyContact}
               onChange={handleChange}
               required
@@ -102,7 +102,7 @@ const UserDashboard = () => {
               type="text"
               name="bloodGroup"
               placeholder="Blood Group"
-              className="mb-4 w-full p-2 border border-gray-300 rounded"
+              className="mb-4 w-full p-3 border border-teal-300 rounded-lg text-teal-700"
               value={formData.bloodGroup}
               onChange={handleChange}
               required
@@ -111,7 +111,7 @@ const UserDashboard = () => {
               type="text"
               name="allergies"
               placeholder="Allergies"
-              className="mb-4 w-full p-2 border border-gray-300 rounded"
+              className="mb-4 w-full p-3 border border-teal-300 rounded-lg text-teal-700"
               value={formData.allergies}
               onChange={handleChange}
             />
@@ -119,7 +119,7 @@ const UserDashboard = () => {
               type="text"
               name="pastSurgery"
               placeholder="Past Surgery"
-              className="mb-4 w-full p-2 border border-gray-300 rounded"
+              className="mb-4 w-full p-3 border border-teal-300 rounded-lg text-teal-700"
               value={formData.pastSurgery}
               onChange={handleChange}
             />
@@ -127,19 +127,19 @@ const UserDashboard = () => {
               type="text"
               name="otherMedicalConditions"
               placeholder="Other Medical Conditions"
-              className="mb-4 w-full p-2 border border-gray-300 rounded"
+              className="mb-4 w-full p-3 border border-teal-300 rounded-lg text-teal-700"
               value={formData.otherMedicalConditions}
               onChange={handleChange}
             />
             <button
               type="submit"
-              className="bg-green-500 text-white w-full py-2 rounded hover:bg-green-600"
+              className="bg-teal-600 text-white w-full py-2 rounded-lg hover:bg-teal-700 transition duration-300"
             >
               Save Changes
             </button>
             <button
               type="button"
-              className="bg-gray-500 text-white w-full py-2 mt-2 rounded hover:bg-gray-600"
+              className="bg-gray-500 text-white w-full py-2 mt-2 rounded-lg hover:bg-gray-600 transition duration-300"
               onClick={() => setIsEditing(false)}
             >
               Cancel
@@ -147,7 +147,7 @@ const UserDashboard = () => {
           </form>
         )}
         <button
-          className="bg-red-500 text-white w-full py-2 mt-4 rounded hover:bg-red-600"
+          className="bg-red-500 text-white w-full py-2 mt-4 rounded-lg hover:bg-red-600 transition duration-300"
           onClick={handleLogout}
         >
           Logout

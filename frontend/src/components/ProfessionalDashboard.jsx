@@ -8,21 +8,20 @@ const ProfessionalDashboard = () => {
   const [resultData, setResultData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [useCamera, setUseCamera] = useState(false);
-  const [capturedImage, setCapturedImage] = useState(null); // State to store the captured image
+  const [capturedImage, setCapturedImage] = useState(null);
   const webcamRef = useRef(null);
   const navigate = useNavigate();
 
   const handleFileChange = (e) => {
     setPhoto(e.target.files[0]);
-    setCapturedImage(null); // Clear the captured image if a new file is selected
+    setCapturedImage(null);
   };
 
   const handleCapture = () => {
     const imageSrc = webcamRef.current.getScreenshot();
-    setCapturedImage(imageSrc); // Store the captured image
-    setUseCamera(false); // Stop the webcam
+    setCapturedImage(imageSrc);
+    setUseCamera(false);
 
-    // Convert the captured image to a blob and set it as a File object
     fetch(imageSrc)
       .then(res => res.blob())
       .then(blob => setPhoto(new File([blob], "captured.png", { type: "image/png" })));
@@ -60,16 +59,16 @@ const ProfessionalDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md w-96">
-        <h2 className="text-2xl mb-4 text-center">Medical Professional Dashboard</h2>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-teal-100 to-teal-200">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-80 max-w-md">
+        <h2 className="text-2xl mb-6 text-center text-teal-800 font-bold">Medical Professional Dashboard</h2>
         
         <div className="mb-4">
           <button
-            className="bg-gray-500 text-white w-full py-2 rounded hover:bg-gray-600"
+            className="bg-teal-600 text-white w-full py-2 rounded-lg hover:bg-teal-700 transition duration-300"
             onClick={() => {
               setUseCamera(!useCamera);
-              setCapturedImage(null); // Reset captured image if switching modes
+              setCapturedImage(null);
             }}
           >
             {useCamera ? 'Switch to Upload' : 'Use Camera'}
@@ -90,7 +89,7 @@ const ProfessionalDashboard = () => {
             )}
             {!capturedImage && (
               <button
-                className="bg-blue-500 text-white w-full py-2 rounded hover:bg-blue-600"
+                className="bg-teal-600 text-white w-full py-2 rounded-lg hover:bg-teal-700 transition duration-300"
                 onClick={handleCapture}
               >
                 Capture Photo
@@ -100,7 +99,7 @@ const ProfessionalDashboard = () => {
         ) : (
           <input
             type="file"
-            className="mb-4 w-full p-2 border border-gray-300 rounded"
+            className="mb-4 w-full p-3 border border-teal-300 rounded-lg text-teal-700"
             onChange={handleFileChange}
             required
           />
@@ -108,13 +107,13 @@ const ProfessionalDashboard = () => {
 
         {capturedImage && (
           <div className="mb-4">
-            <h3 className="text-lg mb-2">Captured Image:</h3>
+            <h3 className="text-lg mb-2 text-teal-800">Captured Image:</h3>
             <img src={capturedImage} alt="Captured" className="w-full h-auto mb-4" />
           </div>
         )}
 
         <button
-          className="bg-blue-500 text-white w-full py-2 rounded hover:bg-blue-600"
+          className="bg-teal-600 text-white w-full py-2 rounded-lg hover:bg-teal-700 transition duration-300"
           onClick={handleScan}
           disabled={loading}
         >
@@ -123,7 +122,7 @@ const ProfessionalDashboard = () => {
 
         {resultData && (
           <div className="mt-4">
-            <h3 className="text-lg mb-2">Patient Information:</h3>
+            <h3 className="text-lg mb-2 text-teal-800">Patient Information:</h3>
             <p><strong>Name:</strong> {resultData.name}</p>
             <p><strong>Aadhaar Number:</strong> {resultData.aadharNumber}</p>
             <p><strong>Emergency Contact:</strong> {resultData.emergencyContact}</p>
@@ -135,7 +134,7 @@ const ProfessionalDashboard = () => {
         )}
 
         <button
-          className="bg-red-500 text-white w-full py-2 mt-4 rounded hover:bg-red-600"
+          className="bg-red-500 text-white w-full py-2 mt-4 rounded-lg hover:bg-red-600 transition duration-300"
           onClick={handleLogout}
         >
           Logout

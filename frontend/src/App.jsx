@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import Home from './components/Home';  // Import the Home component
 import LoginPage from './components/LoginPage';
 import SignupUser from './components/SignupUser';
 import SignupProfessional from './components/SignupProfessional';
@@ -8,7 +9,8 @@ import ProfessionalDashboard from './components/ProfessionalDashboard';
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<LoginPage />} />
+      <Route path="/" element={<Home />} /> 
+      <Route path="/login" element={<LoginPage />} />
       <Route path="/signup-user" element={<SignupUser />} />
       <Route path="/signup-professional" element={<SignupProfessional />} />
       <Route path="/dashboard" element={<UserDashboard />} />
