@@ -8,15 +8,21 @@ const ProfessionalDashboard = () => {
   const [resultData, setResultData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [useCamera, setUseCamera] = useState(false);
+  const [capturedImage, setCapturedImage] = useState(null); // State to store the captured image
   const webcamRef = useRef(null);
   const navigate = useNavigate();
 
   const handleFileChange = (e) => {
     setPhoto(e.target.files[0]);
+    setCapturedImage(null); // Clear the captured image if a new file is selected
   };
 
   const handleCapture = () => {
     const imageSrc = webcamRef.current.getScreenshot();
+    setCapturedImage(imageSrc); // Store the captured image
+    setUseCamera(false); // Stop the webcam
+
+    // Convert the captured image to a blob and set it as a File object
     fetch(imageSrc)
       .then(res => res.blob())
       .then(blob => setPhoto(new File([blob], "captured.png", { type: "image/png" })));
@@ -61,7 +67,10 @@ const ProfessionalDashboard = () => {
         <div className="mb-4">
           <button
             className="bg-gray-500 text-white w-full py-2 rounded hover:bg-gray-600"
-            onClick={() => setUseCamera(!useCamera)}
+            onClick={() => {
+              setUseCamera(!useCamera);
+              setCapturedImage(null); // Reset captured image if switching modes
+            }}
           >
             {useCamera ? 'Switch to Upload' : 'Use Camera'}
           </button>
@@ -69,18 +78,24 @@ const ProfessionalDashboard = () => {
 
         {useCamera ? (
           <div className="mb-4">
-            <Webcam
-              audio={false}
-              ref={webcamRef}
-              screenshotFormat="image/png"
-              className="w-full h-auto mb-4"
-            />
-            <button
-              className="bg-blue-500 text-white w-full py-2 rounded hover:bg-blue-600"
-              onClick={handleCapture}
-            >
-              Capture Photo
-            </button>
+            {!capturedImage ? (
+              <Webcam
+                audio={false}
+                ref={webcamRef}
+                screenshotFormat="image/png"
+                className="w-full h-auto mb-4"
+              />
+            ) : (
+              <img src={capturedImage} alt="Captured" className="w-full h-auto mb-4" />
+            )}
+            {!capturedImage && (
+              <button
+                className="bg-blue-500 text-white w-full py-2 rounded hover:bg-blue-600"
+                onClick={handleCapture}
+              >
+                Capture Photo
+              </button>
+            )}
           </div>
         ) : (
           <input
@@ -89,6 +104,13 @@ const ProfessionalDashboard = () => {
             onChange={handleFileChange}
             required
           />
+        )}
+
+        {capturedImage && (
+          <div className="mb-4">
+            <h3 className="text-lg mb-2">Captured Image:</h3>
+            <img src={capturedImage} alt="Captured" className="w-full h-auto mb-4" />
+          </div>
         )}
 
         <button
